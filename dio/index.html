@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Dio · 小さな魔王様 · sound button</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* DIO BRANDO wallpaper background — luxurious, but made baby-cute */
+            background-image: url('https://i.pinimg.com/originals/5a/2f/8c/5a2f8c1c3f6b9e8e5a4d3b2c1a9e8d7f.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* soft pink overlay so it's still cute & readable */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 225, 235, 0.4);
+            backdrop-filter: blur(2px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* floating items with DIO's little references */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .float-item {
+            position: absolute;
+            color: rgba(230, 180, 200, 0.7);
+            font-size: 2.5rem;
+            user-select: none;
+            filter: drop-shadow(0 0 5px #ffc0cb);
+            animation: floatRound 16s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatRound {
+            0% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 0.4; }
+            100% { transform: translate(30px, -30px) rotate(15deg) scale(1.3); opacity: 0.9; }
+        }
+
+        /* DIO brando wallpaper repeated inside a floating frame (animated) */
+        .dio-animation-box {
+            position: relative;
+            z-index: 15;
+            width: 100%;
+            max-width: 950px;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: center;
+            filter: drop-shadow(0 15px 20px #f9b8d0);
+        }
+
+        .brando-live-wallpaper {
+            background: url('https://i.pinimg.com/originals/3e/5b/6b/3e5b6b7f8c9a1d4e7f2b8c9d0e1f2a3b.jpg') center/cover;
+            background-position: 0% 20%;
+            width: 100%;
+            max-width: 600px;
+            height: 140px;
+            border-radius: 120px 120px 40px 40px;
+            border: 5px solid #ffdbea;
+            box-shadow: 0 0 0 4px white, 0 20px 30px #fbaac8;
+            animation: brandoPan 8s infinite alternate, floatSoft 5s infinite;
+            transition: 0.3s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.5rem;
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ffeff5;
+            text-shadow: 3px 3px 0 #d93b6b, 5px 5px 0 #b14062;
+            letter-spacing: 4px;
+            backdrop-filter: brightness(1.1);
+        }
+
+        @keyframes brandoPan {
+            0% { background-position: 0% 20%; }
+            100% { background-position: 100% 40%; }
+        }
+
+        @keyframes floatSoft {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .brando-live-wallpaper span {
+            background: rgba(255, 215, 230, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 2rem;
+            border-radius: 60px;
+            border: 2px solid white;
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* main card */
+        .baby-card {
+            background-color: rgba(255, 240, 245, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 70px 70px 50px 50px;
+            box-shadow: 0 30px 45px rgba(255, 130, 170, 0.4), 0 10px 20px #fec7d3, inset 0 2px 15px #fffbfd;
+            max-width: 950px;
+            width: 100%;
+            padding: 2rem 2rem 3rem;
+            border: 4px solid #ffffffc9;
+            position: relative;
+            z-index: 20;
+            transition: transform 0.2s;
+        }
+
+        .baby-card:hover {
+            transform: scale(1.005);
+        }
+
+        .header-cute {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .header-cute h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            color: #b1416b;
+            text-shadow: 5px 5px 0 #ffe2f0, 7px 7px 0 #ffb7cb;
+            letter-spacing: 2.5px;
+            transform: rotate(-1deg);
+        }
+
+        .header-cute i {
+            font-size: 4rem;
+            color: #ff88aa;
+            filter: drop-shadow(0 8px 8px #ffb0c3);
+            animation: bob 2.3s infinite;
+        }
+
+        @keyframes bob {
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(-12px); }
+        }
+
+        .sub-cute {
+            text-align: center;
+            font-size: 2rem;
+            color: #c65177;
+            background: #feeef4e0;
+            padding: 0.7rem 2.2rem;
+            border-radius: 100px;
+            display: inline-block;
+            margin: 0 auto 2rem;
+            border: 3px dashed #ffb7c6;
+            box-shadow: 0 6px 0 #fba3bc;
+        }
+
+        /* gallery 3 images */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem 2rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .photo-frame {
+            flex: 0 1 260px;
+            background: white;
+            border-radius: 60px 60px 40px 40px;
+            padding: 1.2rem 1.2rem 1.5rem;
+            box-shadow: 0 16px 0 #ffb2c7, 0 22px 25px -8px #fba6c0;
+            border: 4px solid #ffeef4;
+            transition: 0.2s;
+            transform: rotate(var(--rot, 0deg));
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.07) translateY(-12px);
+            box-shadow: 0 20px 0 #fd9eb8, 0 25px 30px -5px #f582ae;
+        }
+
+        .photo-frame:nth-child(1) { --rot: -2.8deg; }
+        .photo-frame:nth-child(2) { --rot: 3.5deg; }
+        .photo-frame:nth-child(3) { --rot: -1.8deg; }
+
+        .img-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 50px 50px 30px 30px;
+            overflow: hidden;
+            border: 6px solid white;
+            outline: 3px solid #ffd6e2;
+            background: #ffdbe8;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+            display: block;
+        }
+
+        .img-wrapper img:hover {
+            transform: scale(1.15) rotate(1deg);
+            filter: brightness(1.05) saturate(1.15);
+        }
+
+        .caption {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #a44364;
+            background: #fff2f7;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            width: auto;
+            border: 3px dotted #ffa8b8;
+        }
+
+        .caption i {
+            font-size: 1.3rem;
+            margin-right: 4px;
+            color: #ff6688;
+        }
+
+        .sparkle-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.4rem;
+            font-size: 2.2rem;
+            color: #ffb7cb;
+            margin: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .sparkle-row span {
+            animation: twink 2s infinite alternate;
+        }
+
+        .sparkle-row span:nth-child(2) { animation-delay: 0.3s; }
+        .sparkle-row span:nth-child(3) { animation-delay: 0.7s; }
+        .sparkle-row span:nth-child(4) { animation-delay: 1.1s; }
+        .sparkle-row span:nth-child(5) { animation-delay: 1.5s; }
+        .sparkle-row span:nth-child(6) { animation-delay: 1.9s; }
+        .sparkle-row span:nth-child(7) { animation-delay: 2.2s; }
+
+        @keyframes twink {
+            0% { opacity: 0.3; transform: scale(0.9); text-shadow: none; }
+            100% { opacity: 1; transform: scale(1.3); text-shadow: 0 0 12px #ffcfdd; }
+        }
+
+        .baby-message {
+            background: #ffffffd6;
+            backdrop-filter: blur(3px);
+            border-radius: 90px 20px 90px 20px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0 1.5rem;
+            border: 3px solid white;
+            box-shadow: inset 0 0 30px #fff3f7, 0 15px 20px #ffd2e0;
+            text-align: center;
+        }
+
+        .baby-message p {
+            font-size: 1.9rem;
+            color: #8e3f5a;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .baby-message i {
+            color: #ff7ca5;
+            margin: 0 6px;
+        }
+
+        /* ----- SOUND BUTTON (BIG CUTE ONE) ----- */
+        .sound-button-container {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .kono-dio-button {
+            background: #ffd3e0;
+            border: 6px solid white;
+            border-radius: 200px;
+            padding: 1.2rem 3rem;
+            box-shadow: 0 12px 0 #da7a9e, 0 20px 20px #fbaac8;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #932d55;
+            text-shadow: 2px 2px 0 #ffc1d2;
+            display: inline-flex;
+            align-items: center;
+            gap: 1.2rem;
+            cursor: pointer;
+            transition: 0.08s linear;
+            border: 4px solid white;
+            letter-spacing: 2px;
+            transform: rotate(-0.5deg);
+            backdrop-filter: blur(10px);
+            background-color: #ffdfebf2;
+        }
+
+        .kono-dio-button:active {
+            transform: translateY(8px) rotate(-0.5deg);
+            box-shadow: 0 4px 0 #da7a9e, 0 10px 15px #f598b8;
+        }
+
+        .kono-dio-button i {
+            font-size: 2.8rem;
+            color: #b63b65;
+            filter: drop-shadow(2px 4px 4px #ff99bb);
+        }
+
+        .hand-drawn-line {
+            width: 180px;
+            height: 22px;
+            background: repeating-linear-gradient(45deg, #ffaec2 0px, #ffaec2 10px, transparent 10px, transparent 18px);
+            margin: 1.2rem auto;
+            border-radius: 50px;
+        }
+
+        .footer-cute {
+            margin-top: 2rem;
+            color: #cb527b;
+            font-size: 1.5rem;
+            background: #fff0f5de;
+            padding: 0.8rem 2.2rem;
+            border-radius: 60px;
+            border: 3px solid white;
+            display: inline-flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+        }
+
+        .footer-cute i {
+            font-size: 2rem;
+            color: #f55b8f;
+            animation: wiggle 2.5s infinite;
+        }
+
+        @keyframes wiggle {
+            0%,100% { transform: rotate(0deg); }
+            25% { transform: rotate(18deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .dio-mini-emblem {
+            position: absolute;
+            top: -10px; 
+            right: 10px;
+            background: #ffffffee;
+            border-radius: 50%;
+            width: 70px; height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            border: 4px solid #ffb8d2;
+            box-shadow: 0 0 0 5px #ffe4f0;
+            animation: spinSlow 12s infinite linear;
+        }
+
+        @keyframes spinSlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .attribution {
+            font-size: 1rem;
+            color: #c27791;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 700px) {
+            .header-cute h1 { font-size: 3.2rem; }
+            .sub-cute { font-size: 1.6rem; }
+            .brando-live-wallpaper span { font-size: 1.5rem; }
+            .baby-message p { font-size: 1.6rem; }
+            .kono-dio-button { font-size: 1.8rem; padding: 1rem 2rem; }
+        }
+        @media (max-width: 500px) {
+            .photo-frame { flex: 0 1 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- floating cute baby things + DIO touches -->
+    <div class="floating-bg">
+        <div class="float-item" style="top: 8%; left: 3%;">👑</div>
+        <div class="float-item" style="top: 78%; left: 90%;">🍼</div>
+        <div class="float-item" style="top: 18%; left: 88%;">🧸</div>
+        <div class="float-item" style="top: 88%; left: 10%;">✨</div>
+        <div class="float-item" style="top: 35%; left: 15%;">⭐</div>
+        <div class="float-item" style="top: 50%; left: 70%;">💫</div>
+        <div class="float-item" style="top: 68%; left: 40%;">🌸</div>
+        <div class="float-item" style="top: 23%; left: 50%;">🥛</div>
+        <div class="float-item" style="top: 93%; left: 80%;">💖</div>
+        <div class="float-item" style="top: 45%; left: 95%;">👶</div>
+    </div>
+
+    <!-- DIO BRANDO ANIMATED WALLPAPER (LIVE) -->
+    <div class="dio-animation-box">
+        <div class="brando-live-wallpaper">
+            <span>👑 DIO ・ ベビー 👑</span>
+        </div>
+        <!-- little rotating crown emblem -->
+        <div class="dio-mini-emblem">
+            <i class="fas fa-crown" style="color:#f06a9c;"></i>
+        </div>
+    </div>
+
+    <!-- main baby dio card -->
+    <div class="baby-card">
+        <div class="header-cute">
+            <i class="fas fa-crown"></i>
+            <h1>Baby Dio</h1>
+            <i class="fas fa-baby"></i>
+        </div>
+
+        <div style="text-align: center;">
+            <span class="sub-cute"><i class="fas fa-heart"></i>  tiny heir to the world  <i class="fas fa-heart"></i></span>
+        </div>
+
+        <!-- sparkle row -->
+        <div class="sparkle-row">
+            <span>🍼</span> <span>👑</span> <span>✨</span> <span>🍭</span> <span>💗</span> <span>🧁</span> <span>🌟</span>
+        </div>
+
+        <!-- EXACT 3 IMAGES: dio1.jpg, dio2.jpg, dio3.jpg (with fallback) -->
+        <div class="gallery">
+            <div class="photo-frame">
+                <div class="img-wrapper">
+                    <img src="dio1.jpg" alt="baby dio 1" loading="lazy" onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/74/9a/56/749a56b89e1d8d5e2b3c1a6f4d8e9c3b.jpg';">
+                </div>
+                <div class="caption"><i class="fas fa-fist-raised"></i>  muda baby</div>
+            </div>
+            <div class="photo-frame">
+                <div class="img-wrapper">
+                    <img src="dio2.jpg" alt="baby dio 2" loading="lazy" onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/8c/5a/2b/8c5a2b3f4d6e7f8a9b0c1d2e3f4a5b6c.jpg';">
+                </div>
+                <div class="caption"><i class="fas fa-crown"></i>  little brando</div>
+            </div>
+            <div class="photo-frame">
+                <div class="img-wrapper">
+                    <img src="dio3.jpg" alt="baby dio 3" loading="lazy" onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/1d/4e/7f/1d4e7f8a2b9c3d5e6f7a8b9c0d1e2f3a.jpg';">
+                </div>
+                <div class="caption"><i class="fas fa-rose"></i>  rose prince</div>
+            </div>
+        </div>
+
+        <!-- cute message -->
+        <div class="baby-message">
+            <p>
+                <i class="fas fa-star"></i>  Kono Baby Dio da!  <i class="fas fa-star"></i><br>
+                <span style="font-size: 1.6rem;">🍼 wrryyyyyy... i'll take over the world with cuteness 🍼</span>
+            </p>
+        </div>
+
+        <!-- ✦ SOUND BUTTON – plays "kono dio da.mp4" (audio) ✦ -->
+        <div class="sound-button-container">
+            <div class="kono-dio-button" id="konoDioSoundButton">
+                <i class="fas fa-volume-up"></i>  KONO DIO DA !!  <i class="fas fa-crown"></i>
+            </div>
+        </div>
+
+        <!-- hidden audio element for kono dio da.mp4 -->
+        <audio id="dioAudio" preload="auto">
+            <source src="kono dio da.mp4" type="audio/mp4">
+            <source src="kono dio da.mp4" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- hand-drawn line -->
+        <div class="hand-drawn-line"></div>
+
+        <!-- tiny feet animation -->
+        <div style="display: flex; justify-content: center; gap: 1rem; align-items: center; margin: 1rem 0 0.2rem;">
+            <i class="fas fa-baby" style="font-size: 2.4rem; color: #f577a1; animation: slide 3s infinite;"></i>
+            <span style="background: #ffdeec; padding:0.5rem 2rem; border-radius: 40px; font-size: 1.5rem; border:3px solid white; box-shadow: 0 5px 0 #ffb8cf;">
+                👣  kicking & scheming  👣
+            </span>
+            <i class="fas fa-baby" style="font-size: 2.4rem; color: #f577a1; animation: slide 3s infinite reverse;"></i>
+        </div>
+        <style>
+            @keyframes slide {
+                0% { transform: translateX(0); }
+                50% { transform: translateX(15px); }
+            }
+        </style>
+
+        <!-- footer -->
+        <div class="footer-cute">
+            <i class="fas fa-heart"></i> 
+            made by daddy dion
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="attribution">
+            
+        </div>
+    </div>
+
+    <!-- hidden decorative extra -->
+    <div style="position: fixed; bottom: 10px; left: 10px; opacity:0.3; pointer-events:none; z-index:1; font-size: 4rem;">👶👑</div>
+
+    <script>
+        (function() {
+            console.log("💗 BABY DIO with sound button — 'kono dio da.mp4' ready 💗");
+
+            const soundButton = document.getElementById('konoDioSoundButton');
+            const audioPlayer = document.getElementById('dioAudio');
+
+            // When button is clicked, play the audio (kono dio da.mp4)
+            soundButton.addEventListener('click', function() {
+                // If audio is already playing, rewind to start
+                audioPlayer.currentTime = 0;
+                audioPlayer.play().catch(e => {
+                    console.warn('Playback failed: ', e);
+                    // fallback: maybe user interaction needed? but click is there
+                    alert('Click again to hear "KONO DIO DA!" (make sure kono dio da.mp4 is in the same folder)');
+                });
+            });
+
+            // optional: preload nothing, but we have preload="auto"
+        })();
+    </script>
+
+    <!-- also support .mp4 as audio (works in most browsers) -->
+</body>
+</html>
